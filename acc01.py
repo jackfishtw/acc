@@ -10,14 +10,13 @@ from datetime import datetime
 import time
 import os
 import sys
-import xlwt #需要的模块
+import xlwt #用這個來寫Excel
 
-def txt2xls(filename,xlsname):  #文本转换成xls的函数，filename 表示一个要被转换的txt文本，xlsname 表示转换后的文件名
-    f = open(filename, encoding = 'utf8')   #打开txt文本进行读取
-    x = 1                #在excel开始写的位置（y）
-    y = 0                #在excel开始写的位置（x）
-    xls=xlwt.Workbook()
-    sheet = xls.add_sheet('sheet1',cell_overwrite_ok=True) #生成excel的方法，声明excel
+def txt2xls(filename,xlsname):  #txt轉excel的函式，filename 是要被轉的txt，xlsname是要存的excel
+    f = open(filename, encoding = 'utf8')   #用utf8的編碼打開下載的文字檔
+    x = 1                #excel從第一行開始寫，第零行放標題
+    xls=xlwt.Workbook() #宣告一個excel 工作區
+    sheet = xls.add_sheet('sheet1',cell_overwrite_ok=True) #產生一個scheet 取名sheet1
     sheet.write(0,0,'交易日')
     sheet.write(0,1,'序號')
     sheet.write(0,2,'時間')
@@ -28,9 +27,9 @@ def txt2xls(filename,xlsname):  #文本转换成xls的函数，filename 表示�
     sheet.write(0,7,'摘要')
     sheet.write(0,8,'股票代號')
     sheet.write(0,9,'摘要明細')
-    while True:  #循环，读取文本里面的所有内容
-        line = f.readline() #一行一行读取
-        if not line:  #如果没有内容，则退出循环
+    while True:  #開一個無限迴圈
+        line = f.readline() #讀文字檔的一行
+        if not line:  #如果讀不到一行，就結束迴圈
             break        
         if line[0:2] == '20':
             sheet.write(x,0,line[0:8].strip())      #交易日
@@ -44,9 +43,9 @@ def txt2xls(filename,xlsname):  #文本转换成xls的函数，filename 表示�
             sheet.write(x,7,line[71:79].strip())    #摘要
             sheet.write(x,8,line[79:85].strip())    #股票代號
             sheet.write(x,9,line[85:].strip())      #摘要明細
-            x += 1 #另起一行
+            x += 1 #excel 要寫的行號加1
     f.close()
-    xls.save(xlsname+'.xls') #保存
+    xls.save(xlsname+'.xls') #Excel 存檔
 
 if __name__ == "__main__":
     filename = sys.argv[1]
