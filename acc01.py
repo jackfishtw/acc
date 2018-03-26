@@ -28,7 +28,7 @@ def txt2xls(filename,xlsname):  #txt轉excel的函式，filename 是要被轉的
     sheet.write(0,8,'股票代號')
     sheet.write(0,9,'摘要明細')
     for line in f:
-        if line[0:2] == '20':
+        if line[0:2] == '20':                       #因為有用資料列的開始是西元年，所以開頭是20的才轉換
             sheet.write(x,0,line[0:8].strip())      #交易日
             sheet.write(x,1,line[8:12].strip())     #序號
             sheet.write(x,2,line[12:16].strip())    #時間
