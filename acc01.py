@@ -1,10 +1,10 @@
 #!/bin/env python
 # -*- encoding: utf-8 -*-
 #-------------------------------------------------------------------------------
-# Purpose:     txt转换成Excel
-# Author:      zhoujy
-# Created:     2013-05-07
-# update:      2013-05-07
+# Purpose:     transfor SCB account txt to excel
+# Author:      Jack Fish
+# Created:     2018-03-26
+# update:      2018-03-26
 #-------------------------------------------------------------------------------
 from datetime import datetime
 import time
